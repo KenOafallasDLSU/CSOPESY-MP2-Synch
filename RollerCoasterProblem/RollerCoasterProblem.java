@@ -1,36 +1,59 @@
 import java.util.Scanner;
 
-public class RollerCoasterProblem {
-
+class Shared {
   static int n;
   static int c;
   static int m;
 
-  public static void main(String[] args) {
+  private Shared() {
+    // not called
+  }
+}
+
+public class RollerCoasterProblem {
+  public static void main(String[] args) throws InterruptedException {
+
     getInput();
 
-    // init cars
-    Car[] car = new Car[m];
-    for (int i = 0; i < m; i++) {
-      car[i] = new Car(i);
+    // cars
+    Thread[] car = new Thread[Shared.m];
+    for (int i = 0; i < Shared.m; i++) {
+      car[i] = new Thread(new Car(i));
+      car[i].start();
+    }
+    for (int i = 0; i < Shared.m; i++) {
+      try {
+        car[i].join();
+      } catch (InterruptedException e) {
+        System.out.println("Car " + i + "could not join thread.");
+      }
     }
 
-    // init passengers
-    Passenger[] passenger = new Passenger[n];
-    for (int i = 0; i < n; i++) {
-      passenger[i] = new Passenger(i);
+    // passengers
+    Thread passenger[] = new Thread[Shared.n];
+    for (int i = 0; i < Shared.n; i++) {
+      passenger[i] = new Thread(new Passenger(i));
+      passenger[i].start();
     }
+    for (int i = 0; i < Shared.n; i++) {
+      try {
+        passenger[i].join();
+      } catch (InterruptedException e) {
+        System.out.println("Passenger " + i + "could not join thread.");
+      }
+    }
+
   }
 
   static void getInput() {
     Scanner sc = new Scanner(System.in);
 
     System.out.print("Enter n (no. passengers): ");
-    n = sc.nextInt();
+    Shared.n = sc.nextInt();
     System.out.print("Enter C (car capacity): ");
-    c = sc.nextInt();
+    Shared.c = sc.nextInt();
     System.out.print("Enter m (no. cars): ");
-    m = sc.nextInt();
+    Shared.m = sc.nextInt();
 
     sc.close();
   }

@@ -1,4 +1,6 @@
-public class Passenger {
+import java.util.concurrent.*;
+
+public class Passenger implements Runnable {
 
   int i;
 
@@ -12,6 +14,11 @@ public class Passenger {
 
   void unboard() {
     System.out.println("Passenger " + i + "is unboarding.");
+  }
+
+  @Override
+  public void run() {
+    System.out.println("Passenger " + i + " thread started.");
   }
 
 }

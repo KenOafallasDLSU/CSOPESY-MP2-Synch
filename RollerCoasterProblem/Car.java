@@ -1,4 +1,7 @@
-public class Car {
+import java.util.concurrent.*;
+
+public class Car implements Runnable {
+
   int i;
 
   public Car(int i) {
@@ -11,5 +14,10 @@ public class Car {
 
   void unload() {
     System.out.println("Unoading passenger from car " + i + ".");
+  }
+
+  @Override
+  public void run() {
+    System.out.println("Car " + i + " thread started.");
   }
 }
