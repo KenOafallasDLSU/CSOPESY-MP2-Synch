@@ -1,5 +1,6 @@
 import java.util.concurrent.*;
 import java.util.Random;
+import java.time.LocalDateTime;
 
 public class Car implements Runnable {
 
@@ -14,17 +15,17 @@ public class Car implements Runnable {
   }
 
   void load() {
-    System.out.println("Loading passenger into car " + this.i + ".");
+    System.out.println("[" + java.time.LocalDateTime.now() + "]" + "Loading passenger into car " + this.i + ".");
     s.mutex.release();
   }
 
   void unload() {
-    System.out.println("Unloading passenger from car " + this.i + ".");
+    System.out.println("[" + java.time.LocalDateTime.now() + "]" + "Unloading passenger from car " + this.i + ".");
     s.mutex2.release();
   }
 
   void runRide() {
-    System.out.println("Car " + this.i + " ride has started! Woooh!");
+    System.out.println("[" + java.time.LocalDateTime.now() + "]" + "Car " + this.i + " ride has started! Woooh!");
     int rando = randomizer.nextInt(5000);
     Thread.sleep(rando);
   }
@@ -36,6 +37,7 @@ public class Car implements Runnable {
 
   @Override
   public void run() {
+    System.out.println("[" + java.time.LocalDateTime.now() + "]" + "Car " + this.i + " thread started.");
     while(true) {
       s.loadingArea[this.i].acquire();
       this.load();
