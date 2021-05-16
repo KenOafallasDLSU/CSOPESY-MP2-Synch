@@ -14,22 +14,23 @@ public class Car implements Runnable {
   }
 
   void load() {
-    System.out.println("Loading passenger into car " + i + ".");
+    System.out.println("Loading passenger into car " + this.i + ".");
     s.mutex.release();
   }
 
   void unload() {
-    System.out.println("Unloading passenger from car " + i + ".");
+    System.out.println("Unloading passenger from car " + this.i + ".");
     s.mutex2.release();
   }
 
   void runRide() {
-    System.out.println("Car " + i + " ride has started! Woooh!");
-    Thread.sleep(randomizer.nextInt(5000));
+    System.out.println("Car " + this.i + " ride has started! Woooh!");
+    int rando = randomizer.nextInt(5000);
+    Thread.sleep(rando);
   }
 
-  int next(int current) {
-    int next = (current + 1) / s.m;
+  int next() {
+    int next = (this.i + 1) / s.m;
     return next;
   }
 
@@ -40,7 +41,7 @@ public class Car implements Runnable {
       this.load();
       s.boardQueue.release(s.c);
       s.allAboard.acquire();
-      s.loadingArea[this.next(this.i)].release();
+      s.loadingArea[this.next()].release();
 
       this.runRide();
 
@@ -48,7 +49,7 @@ public class Car implements Runnable {
       this.unload();
       s.unboardQueue.release(s.c);
       s.allAshore.acquire();
-      s.unloadingArea[this.next(this.i)].release();
+      s.unloadingArea[this.next()].release();
     }
   }
 }
