@@ -6,7 +6,7 @@ public class Car implements Runnable {
 
   private int i;
   private Shared s;
-  private Random randomizer; 
+  private Random randomizer;
 
   public Car(int i, Shared s) {
     this.i = i;
@@ -38,7 +38,7 @@ public class Car implements Runnable {
   @Override
   public void run() {
     System.out.println("[" + java.time.LocalDateTime.now() + "]" + "Car " + this.i + " thread started.");
-    while(true) {
+    while (true) {
       s.loadingArea[this.i].acquire();
       this.load();
       s.boardQueue.release(s.c);
