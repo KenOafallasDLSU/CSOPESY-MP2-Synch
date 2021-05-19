@@ -25,9 +25,14 @@ public class Car implements Runnable {
   }
 
   void runRide() {
-    System.out.println("[" + java.time.LocalDateTime.now() + "]" + "Car " + this.i + " ride has started! Woooh!");
+    System.out.println("[" + java.time.LocalDateTime.now() + "]" + " Car " + this.i + " ride has started! Woooh!");
     int rando = randomizer.nextInt(5000);
-    Thread.sleep(rando);
+    try {
+      Thread.sleep(rando);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+
   }
 
   int next() {
@@ -39,19 +44,24 @@ public class Car implements Runnable {
   public void run() {
     System.out.println("[" + java.time.LocalDateTime.now() + "]" + "Car " + this.i + " thread started.");
     while (true) {
-      s.loadingArea[this.i].acquire();
-      this.load();
-      s.boardQueue.release(s.c);
-      s.allAboard.acquire();
-      s.loadingArea[this.next()].release();
+      try {
+        s.loadingArea[this.i].acquire();
+        this.load();
+        s.boardQueue.release(s.c);
+        s.allAboard.acquire();
+        s.loadingArea[this.next()].release();
 
-      this.runRide();
+        this.runRide();
 
-      s.unloadingArea[this.i].acquire();
-      this.unload();
-      s.unboardQueue.release(s.c);
-      s.allAshore.acquire();
-      s.unloadingArea[this.next()].release();
+        s.unloadingArea[this.i].acquire();
+        this.unload();
+        s.unboardQueue.release(s.c);
+        s.allAshore.acquire();
+        s.unloadingArea[this.next()].release();
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+
     }
   }
 }

@@ -14,9 +14,19 @@ class Shared {
   Semaphore boardQueue = new Semaphore(0);
   Semaphore unboardQueue = new Semaphore(0);
 
+  Semaphore[] loadingArea;
+  Semaphore[] unloadingArea;
+
   public Shared(int n, int m, int c) {
     this.n = n;
     this.m = m;
     this.c = c;
+
+    this.loadingArea = new Semaphore[m];
+    this.unloadingArea = new Semaphore[m];
+    for (int i = 0; i < m; i++) {
+      this.loadingArea[i] = new Semaphore(0);
+      this.loadingArea[i] = new Semaphore(0);
+    }
   }
 }
