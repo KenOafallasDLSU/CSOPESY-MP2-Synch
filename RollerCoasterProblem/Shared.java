@@ -27,7 +27,7 @@ class Shared {
     this.unloadingArea = new Semaphore[m];
     for (int i = 0; i < m; i++) {
       this.loadingArea[i] = new Semaphore(0);
-      this.loadingArea[i] = new Semaphore(0);
+      this.unloadingArea[i] = new Semaphore(0);
     }
   }
 }
