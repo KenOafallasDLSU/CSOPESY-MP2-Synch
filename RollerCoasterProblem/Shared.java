@@ -17,6 +17,7 @@ class Shared {
   Semaphore[] loadingArea;
   Semaphore[] unloadingArea;
 
+
   public Shared(int n, int m, int c) {
     this.n = n;
     this.m = m;

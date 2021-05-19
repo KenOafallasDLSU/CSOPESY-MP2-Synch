@@ -32,7 +32,6 @@ public class Car implements Runnable {
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
-
   }
 
   int next() {
