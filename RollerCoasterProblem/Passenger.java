@@ -25,7 +25,6 @@ public class Passenger implements Runnable {
     // 18     unboarders = 0        // reset passenger counter
     // 19 mutex2.signal ()
 
-
   public Passenger(int i, Shared s) {
     this.i = i;
     this.s = s;

@@ -5,25 +5,25 @@ public class RollerCoasterProblem {
 
     Shared s = initShared();
 
-    // cars
+    // start cars and passengers
     Thread[] car = new Thread[s.m];
     for (int i = 0; i < s.m; i++) {
       car[i] = new Thread(new Car(i, s));
       car[i].start();
     }
+    Thread[] passenger = new Thread[s.n];
+    for (int i = 0; i < s.n; i++) {
+      passenger[i] = new Thread(new Passenger(i, s));
+      passenger[i].start();
+    }
+
+    // join threads
     for (int i = 0; i < s.m; i++) {
       try {
         car[i].join();
       } catch (InterruptedException e) {
-        System.out.println("Car " + i + "could not join thread.");
+        System.out.println(" Car " + i + "could not join thread.");
       }
-    }
-
-    // passengers
-    Thread[] passenger = new Thread[s.n];
-    for (int i = 0; i < s.n; i++) {
-      passenger[i] = new Thread(new Passenger(i));
-      passenger[i].start();
     }
     for (int i = 0; i < s.n; i++) {
       try {
@@ -46,6 +46,6 @@ public class RollerCoasterProblem {
     int m = sc.nextInt();
 
     sc.close();
-    return new Shared(n, c, m);
+    return new Shared(n, m, c);
   }
 }
