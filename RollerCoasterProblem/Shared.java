@@ -7,6 +7,7 @@ class Shared {
   int c; // car capacity
   int boarders = 0;
   int unboarders = 0;
+  
   Semaphore mutex = new Semaphore(1);
   Semaphore mutex2 = new Semaphore(1);
   Semaphore allAboard = new Semaphore(0);
