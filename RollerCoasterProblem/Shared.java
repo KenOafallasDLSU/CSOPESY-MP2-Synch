@@ -7,6 +7,8 @@ class Shared {
   int c; // car capacity
   int boarders = 0;
   int unboarders = 0;
+
+  boolean finished;
   
   Semaphore mutex = new Semaphore(1);
   Semaphore mutex2 = new Semaphore(1);
@@ -23,6 +25,8 @@ class Shared {
     this.n = n;
     this.m = m;
     this.c = c;
+
+    this.finished = false;
 
     this.loadingArea = new Semaphore[m];
     this.unloadingArea = new Semaphore[m];

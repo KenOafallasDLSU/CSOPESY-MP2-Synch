@@ -44,7 +44,7 @@ public class Car implements Runnable {
   @Override
   public void run() {
     System.out.println("[" + java.time.LocalTime.now() + "] " + "Car " + this.i + " thread started.");
-    while (true) {
+    while (!s.finished) {
       try {
         s.loadingArea[this.i].acquire();
         //System.out.println("Car " + this.i + " loading permits: " + s.loadingArea[this.i].availablePermits());
@@ -66,7 +66,7 @@ public class Car implements Runnable {
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
-
     }
+    System.out.println("[" + java.time.LocalTime.now() + "] " + "All rides completed");
   }
 }
