@@ -22,7 +22,6 @@ public class Passenger implements Runnable {
       s.boarders += 1;
 
       if (s.boarders == s.c) {
-        System.out.println("[" + java.time.LocalTime.now() + "] " + "All aboard car [I dunno]");
         s.allAboard.release();
         s.boarders = 0;
       }
@@ -42,7 +41,6 @@ public class Passenger implements Runnable {
       s.unboarders += 1;
 
       if (s.unboarders == s.c) {
-        System.out.println("[" + java.time.LocalTime.now() + "] " + "All ashore car [I dunno]");
         s.allAshore.release();
         s.unboarders = 0;
       }

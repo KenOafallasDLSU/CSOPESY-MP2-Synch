@@ -51,6 +51,7 @@ public class Car implements Runnable {
         this.load();
         s.boardQueue.release(s.c);
         s.allAboard.acquire();
+        System.out.println("[" + java.time.LocalTime.now() + "] " + "All aboard car [" + this.i + "]");
         s.loadingArea[this.next()].release();
         //System.out.println("Car " + this.next() + " loading permits: " + s.loadingArea[this.next()].availablePermits());
 
@@ -61,12 +62,13 @@ public class Car implements Runnable {
         this.unload();
         s.unboardQueue.release(s.c);
         s.allAshore.acquire();
+        System.out.println("[" + java.time.LocalTime.now() + "] " + "All ashore car [" + this.i + "]");
         s.unloadingArea[this.next()].release();
         //System.out.println("Car " + this.next() + " unloading permits: " + s.unloadingArea[this.next()].availablePermits());
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
     }
-    System.out.println("[" + java.time.LocalTime.now() + "] " + "All rides completed");
+    //System.out.println("[" + java.time.LocalTime.now() + "] " + "All rides completed");
   }
 }
