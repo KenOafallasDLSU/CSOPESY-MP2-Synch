@@ -30,5 +30,9 @@ class Shared {
       this.loadingArea[i] = new Semaphore(0);
       this.unloadingArea[i] = new Semaphore(0);
     }
+
+    //allow first car to load/unload immediately
+    this.loadingArea[0].release();
+    this.unloadingArea[0].release();
   }
 }
