@@ -26,9 +26,9 @@ public class Car implements Runnable {
 
   void runRide() {
     System.out.println("[" + java.time.LocalTime.now() + "] " + "Car " + this.i + " ride has started! Woooh!");
-    int rando = randomizer.nextInt(5000);
+    //int rando = randomizer.nextInt(5000);
     try {
-      Thread.sleep(rando);
+      Thread.sleep(3000);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
