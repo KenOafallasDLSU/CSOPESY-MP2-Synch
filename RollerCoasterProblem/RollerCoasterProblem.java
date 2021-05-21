@@ -33,6 +33,11 @@ public class RollerCoasterProblem {
       }
     }
 
+    // if (s.carTurn == s.m) {
+    //   System.out.println("All rides completed");
+    // }
+
+    
   }
 
   static Shared initShared() {

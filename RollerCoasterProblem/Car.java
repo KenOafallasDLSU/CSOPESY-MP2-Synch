@@ -68,6 +68,14 @@ public class Car implements Runnable {
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
+
+      s.carRunCount++;
+
+      if (s.carRunCount == s.n / s.c) {
+        System.out.println("All rides completed");
+        System.exit(0);
+      }
+      
     }
     //System.out.println("[" + java.time.LocalTime.now() + "] " + "All rides completed");
   }

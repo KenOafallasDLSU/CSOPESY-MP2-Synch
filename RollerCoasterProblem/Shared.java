@@ -9,6 +9,7 @@ class Shared {
   int unboarders = 0;
 
   boolean finished;
+  int carRunCount = 0;
   
   Semaphore mutex = new Semaphore(1);
   Semaphore mutex2 = new Semaphore(1);
