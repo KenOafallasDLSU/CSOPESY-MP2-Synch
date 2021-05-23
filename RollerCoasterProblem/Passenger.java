@@ -56,12 +56,14 @@ public class Passenger implements Runnable {
   public void run() {
     System.out.println("[" + java.time.LocalTime.now() + "] " + "Passenger " + i + " thread started.");
 
-    int rando = randomizer.nextInt(1000);
+    int rando = randomizer.nextInt(1500);
     try {
       Thread.sleep(rando);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
+    
+    System.out.println("[" + java.time.LocalTime.now() + "] " + "Passenger " + i + " in line for ride.");
     
     try {
       s.boardQueue.acquire();    // wait for car
