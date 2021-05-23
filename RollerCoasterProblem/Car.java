@@ -1,3 +1,13 @@
+/***************************************************************
+Names:  CHONG, Dianne
+        GO, Thea
+        MARCELO, Jan Uriel
+        OAFALLAS, Kenneth
+        TAN, Darren
+Group: 1
+Section: S15
+***************************************************************/
+
 import java.util.concurrent.*;
 import java.util.Random;
 import java.time.LocalTime;
