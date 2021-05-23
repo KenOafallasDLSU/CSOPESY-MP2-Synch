@@ -5,6 +5,11 @@ public class RollerCoasterProblem {
 
     Shared s = initShared();
 
+    if (s.n / s.c <= 0) {
+      System.out.println("Max passengers cannot meet capacity. All rides completed");
+      System.exit(0);
+    }
+
     // start cars and passengers
     Thread[] car = new Thread[s.m];
     for (int i = 0; i < s.m; i++) {
@@ -49,6 +54,16 @@ public class RollerCoasterProblem {
     int c = sc.nextInt();
     System.out.print("Enter m (no. cars): ");
     int m = sc.nextInt();
+
+    if(c <= 0) {
+      System.out.println("Cars have no capacity. Rides cannot be made");
+      System.exit(0);
+    }
+
+    if(m <= 0) {
+      System.out.println("No cars. Rides cannot be made");
+      System.exit(0);
+    }
 
     sc.close();
     return new Shared(n, m, c);
